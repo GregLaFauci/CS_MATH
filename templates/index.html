@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore binary place values, animate bit shifts, and discover unsigned 8-bit overflow.">
+  <title>Bit Shift Lab · Visual CS</title>
+  <link rel="stylesheet" href="./static/styles.css">
+  <script src="./static/app.js" type="module"></script>
+</head>
+<body>
+  <main>
+    <header><a class="brand" href="./index.html"><span class="brand-mark">01</span> VISUAL CS</a><span class="eyebrow">COMPUTER SCIENCE / 01</span></header>
+    <section class="intro"><p class="eyebrow accent">THE BINARY PLAYGROUND</p><h1>Small shift.<br><span>Big difference.</span></h1><p>What does <code>&lt;&lt;</code> actually do? Change a number, move its bits, and watch the math happen.</p></section>
+    <section class="lab" aria-labelledby="lab-title">
+      <div class="lab-heading"><h2 id="lab-title">Bit shift lab</h2><span class="badge">UNSIGNED · 8 BITS</span></div>
+      <div class="controls">
+        <label>Starting number<input id="number" type="number" min="0" max="255" step="1" value="45" aria-describedby="input-error"></label>
+        <label>Direction<select id="direction"><option value="left">← Left shift</option><option value="right">Right shift →</option></select></label>
+        <label>Places<select id="places"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+        <button class="primary" id="play">Animate shift <span aria-hidden="true">↗</span></button>
+      </div>
+      <p id="input-error" class="error" role="alert"></p>
+      <div class="presets"><span>Try it:</span><button data-value="45">45 · the classic</button><button data-value="200">200 · overflow</button><button data-value="255">255 · all ones</button></div>
+      <div class="stage">
+        <div class="stage-heading"><span id="stage-label">STARTING REGISTER</span><span id="step-label">Click any bit to flip it</span></div>
+        <div id="register" class="register" aria-label="Eight-bit binary register"></div>
+        <div class="sum" id="sum"></div>
+        <div class="transport"><button id="step">Shift one step</button><button id="reset">↺ Reset</button><span id="progress">Ready to explore</span></div>
+      </div>
+      <div class="result" aria-live="polite" aria-atomic="true"><div><p class="eyebrow">CURRENT VALUE</p><output id="decimal">45</output></div><div class="explanation"><h3 id="result-title">Every position has a value.</h3><p id="result-text">Add the highlighted place values to turn binary into decimal. A left shift moves each bit to a position worth twice as much.</p><code id="formula">45 = 00101101₂</code></div></div>
+    </section>
+    <section class="notes" aria-label="The idea behind the shift"><article><span class="note-number">01 / POSITION</span><h2>Same bits. New value.</h2><p>Move left and each position is worth twice as much. Move right and it is worth half as much; the lowest bit is discarded.</p></article><article><span class="note-number">02 / THE EDGE</span><h2>Eight slots. That’s it.</h2><p>An unsigned 8-bit register holds 0–255. Bits that leave the edge are lost, and empty positions fill with zeros.</p></article><article class="challenge"><span class="note-number">03 / YOUR TURN</span><h2>Predict the result.</h2><form id="quiz"><label for="answer">What is 200 &lt;&lt; 1 in 8 bits?</label><div class="answer-row"><input id="answer" type="number" min="0" max="255" step="1" placeholder="Your answer" required><button type="submit">Check <span aria-hidden="true">→</span></button></div></form><p id="feedback" role="status">Hint: there is no slot for 256.</p></article></section>
+    <footer><span>VISUAL CS / LEARN BY CHANGING THINGS</span><span>A fixed-width register simulation. All shifts keep only 8 bits.</span></footer>
+  </main>
+</body>
+</html>
